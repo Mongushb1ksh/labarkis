@@ -1,0 +1,23 @@
+{% extends "basic.html" %}
+
+{% block content %}
+   <h2>Вход</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <div>
+      <label for="id_username">Имя пользователя:</label>
+      <input type="text" name="username" id="id_username" required>
+    </div>
+    <div>
+      <label for="id_password">Пароль:</label>
+      <input type="password" name="password" id="id_password" required>
+    </div>
+    <button type="submit">Войти</button>
+  </form>
+
+  {% if form.errors %}
+    <div class="error">
+      <p>Ошибка входа. Проверьте свои данные и попробуйте снова.</p>
+    </div>
+    {% endif %}
+{% endblock %}

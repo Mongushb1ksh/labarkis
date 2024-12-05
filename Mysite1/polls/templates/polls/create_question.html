@@ -1,0 +1,22 @@
+{% extends "basic.html" %}
+
+{% block content %}
+<h1>Создать новый пост</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ question_form.as_p }}
+
+        <h2>Варианты ответов</h2>
+        {{ choice_formset.management_form }}
+        {% for form in choice_formset %}
+            <div class="form-row">
+                {{ form.as_p }}
+            </div>
+        {% endfor %}
+
+        <button type="submit">Создать пост</button>
+    </form>
+
+    <a href="{% url 'polls:index' %}">Назад</a>
+{% endblock %}

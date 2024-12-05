@@ -1,0 +1,8 @@
+{% extends "basic.html" %}
+
+{% block content %}
+   <h1>Профиль пользователя: {{ user.username }}</h1>
+    <img src="{{ user_profile.avatar.url }}" alt="Avatar" style="width: 200px; height: 150px;">
+  <a href="{% url 'polls:profile-edit' %}">Редактировать профиль</a>
+
+{% endblock %}

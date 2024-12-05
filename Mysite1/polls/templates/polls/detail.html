@@ -1,0 +1,31 @@
+{% extends "basic.html" %}
+
+{% block content %}
+<h1>{{ question.title }}</h1>
+<p>{{ question.full_description }}</p>
+<h1>{{ question.question_text }}</h1>
+
+
+
+    {% if not has_voted %}
+        {% if question.image %}
+        <img src="{{ question.image.url }}" alt="Изображение для вопроса">
+        {% endif %}
+        <form action="{% url 'polls:vote' question.id %}" method="post">
+            {% csrf_token %}
+            {% for choice in question.choice_set.all %}
+                <input type="radio" name="choice" value="{{ choice.id }}" id="choice_{{ choice.id }}">
+                <label for="choice_{{ choice.id }}">{{ choice.choice_text }}</label><br>
+            {% endfor %}
+            <button type="submit">Голосовать</button>
+        </form>
+    {% else %}
+        <p>Вы уже проголосовали.</p>
+    {% endif %}
+
+
+
+{% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+{% endif %}
+{% endblock %}

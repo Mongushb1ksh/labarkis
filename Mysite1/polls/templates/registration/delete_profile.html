@@ -1,0 +1,12 @@
+{% extends "basic.html" %}
+
+{% block content %}
+<h2>Подтвердите удаление аккаунта</h2>
+  <p>{{ user.username }}</p>
+  <form method="POST">
+    {% csrf_token %}
+    <button type="submit">Удалить аккаунт</button>
+  </form>
+  <a href="{% url 'polls:profile-edit' %}">Отмена</a>
+
+{% endblock %}
